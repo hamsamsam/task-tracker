@@ -8,6 +8,8 @@ class Task:
     priority:str = ''
     time_estimate:int = 0
     urgent:str = ''
+    status:bool = False
+    cost:float = 0.0
     
     def PrintSummary(self):
         print("====================")
@@ -44,6 +46,8 @@ print("Enter Task Time Estimate")
 new_task.time_estimate = int(input("->"))
 print("Is task urgent yes/no?")
 new_task.urgent = input("->")
+
+new_task.PrintSummary()
 
 
 
