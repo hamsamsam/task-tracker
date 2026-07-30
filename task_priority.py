@@ -42,12 +42,15 @@ while True:
     if(usr_input.lower() == 'quit'):
         print("Session Closed. Thank you for using Task Traker.")
         break
+    #if the input is not empty, the != checks if the input doesnt equal empty string to proceeed
     elif(usr_input != ''):
         new_task = Task()
         new_task.name = usr_input
         print("Enter Task Priority")
         new_task.priority = input("->")
         new_task.PriorityMessage()
+    else:
+        print("Error invalid input.")
    
 
 
