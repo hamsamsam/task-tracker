@@ -10,7 +10,17 @@ class Task:
     urgent:str = ''
     status:bool = False
     cost:float = 0.0
-        
+    
+    #conditional to check the priority
+    def PriorityMessage(self):
+        if(self.priority.lower() == 'high'):
+            print("This task is high priority and should be done first")
+        elif(self.priority.lower() == 'medium'):
+            print("This task should be scheduled soon")
+        elif(self.priority.lower() == 'low'):
+            print("This task should be done when time allows")
+        else:
+            print("Priority input was not recognised. Pease enter a valid priority.")
         
         
     
@@ -32,11 +42,12 @@ while True:
     if(usr_input.lower() == 'quit'):
         print("Session Closed. Thank you for using Task Traker.")
         break
-    
-    new_task = Task()
-    new_task.name = usr_input
-    print("Enter Task Priority")
-    new_task.priority = input("->")
+    elif(usr_input != ''):
+        new_task = Task()
+        new_task.name = usr_input
+        print("Enter Task Priority")
+        new_task.priority = input("->")
+        new_task.PriorityMessage()
    
 
 
