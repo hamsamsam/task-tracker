@@ -34,7 +34,11 @@ class Task:
         else:
             print("Priority input was not recognised. Pease enter a valid priority.")
     
-        
+
+
+#function to get input in the form of string and return string value
+def GetInput():
+    return input("->")  
     
 #welcome message
 
@@ -42,7 +46,7 @@ usr_input = ''
 #get input from user about task while the user does not quit
 while True:
     print("Enter Task Name (Enter 'quit' to exit)")
-    usr_input = input()
+    usr_input = GetInput()
     if(usr_input.lower() == 'quit'):
         print("Session Closed. Thank you for using Task Traker.")
         break
@@ -51,7 +55,7 @@ while True:
         new_task = Task()
         new_task.name = usr_input
         print("Enter Task Priority")
-        new_task.priority = input("->")
+        new_task.priority = GetInput()
         new_task.PriorityMessage()
     else:
         print("Error invalid input.")
