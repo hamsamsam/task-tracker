@@ -23,8 +23,7 @@ class Task:
         Returns:
             str:temp_name: name of the task
         """
-        print("Enter Task Name (Enter 'quit' to exit)")
-        temp_name = input("->")
+        temp_name = input("Enter Task Name (Enter 'quit' to exit): ")
         if temp_name == '':
             temp_name = 'untitled'
         return temp_name
@@ -35,8 +34,7 @@ class Task:
         Returns:
             str: level of priority 
         """
-        print("Enter Task Priority")
-        return input("->")
+        return input("Enter Task Priority: ")
         
     #conditional to check the priority collects string and returns a message based on it 
     def PriorityMessage(self, priority:str):
@@ -46,11 +44,11 @@ class Task:
             priority (str): priority of task
         """
         if(priority.lower() == 'high'):
-            return("This task is high priority and should be done first")
+            return(f"This {self.name} task is high priority and should be done first")
         elif(priority.lower() == 'medium'):
-            return("This task should be scheduled soon")
+            return(f"This {self.name} task should be scheduled soon")
         elif(priority.lower() == 'low'):
-            return("This task should be done when time allows")
+            return(f"This {self.name} task should be done when time allows")
         else:
             return("Priority input was not recognised. Pease enter a valid priority.")
 
@@ -59,14 +57,10 @@ def greet_user():
     """
     Greet the user no inputs
     """
-    print(""""
-        Task Tracker
-        
-        An app to track your tasks.
-        
-        """
-    )
+    print('Welcome to Task Tracker Priority Checker!')
+    print()
     input("Press 'Enter' to continue.")
+    print()
     
          
 #run the program in a while loop
