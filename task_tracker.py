@@ -18,6 +18,11 @@ class Task:
     #getter 
     #get title of task, if none is added name the task as untitled which means no title was added
     def get_task_input(self):
+        """Gets input for task name and sets default value if not provided
+
+        Returns:
+            str:temp_name: name of the task
+        """
         print("Enter Task Name (Enter 'quit' to exit)")
         temp_name = input("->")
         if temp_name == '':
@@ -25,11 +30,21 @@ class Task:
         return temp_name
         
     def get_priority_input(self):
+        """Gets input for priority type
+
+        Returns:
+            str: level of priority 
+        """
         print("Enter Task Priority")
         return input("->")
         
     #conditional to check the priority collects string and returns a message based on it 
     def PriorityMessage(self, priority:str):
+        """Generates priority message to return based on the priority status as input
+
+        Args:
+            priority (str): priority of task
+        """
         if(priority.lower() == 'high'):
             return("This task is high priority and should be done first")
         elif(priority.lower() == 'medium'):
@@ -41,6 +56,9 @@ class Task:
 
 #print greeting for the user
 def greet_user():
+    """
+    Greet the user no inputs
+    """
     print(""""
         Task Tracker
         
