@@ -2,6 +2,10 @@
 # Hangsam Nembang
 # This program gets task details from user and utilises loops
 
+#global variable stores version of the program
+program_version:float = 1.0
+
+
 #Task class
 class Task:
     name:str = ''
@@ -12,9 +16,13 @@ class Task:
     cost:float = 0.0
     
     #getter 
+    #get title of task, if none is added name the task as untitled which means no title was added
     def get_task_input(self):
         print("Enter Task Name (Enter 'quit' to exit)")
-        return input("->")
+        temp_name = input("->")
+        if temp_name == '':
+            temp_name = 'untitled'
+        return temp_name
         
     def get_priority_input(self):
         print("Enter Task Priority")
@@ -43,7 +51,7 @@ def greet_user():
     input("Press 'Enter' to continue.")
     
          
-#run the program
+#run the program in a while loop
 def run_tracker():
     greet_user()
 
