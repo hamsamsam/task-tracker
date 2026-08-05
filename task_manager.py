@@ -1,3 +1,8 @@
+import json
+
+#constant for file name, good for maintainability 
+TASKS_FILE = "tasks.json"
+
 #a global list of tasks 
 tasks = []
 
@@ -49,7 +54,29 @@ def delete_task(index):
     else:
         print("Error: Invalid task index.")
 
+def save_tasks():
+    """save the current list of tasks to a JSON file."""
+    with open(TASKS_FILE, "w") as file:
+        json.dump(tasks, file, indent=4)
 
+    print("Tasks saved successfully.")
+
+def load_tasks():
+    """load tasks from a JSON file."""
+    global tasks
+
+    try:
+        with open(TASKS_FILE, "r") as file:
+            tasks = json.load(file)
+
+        print(f"Loaded {len(tasks)} task(s).")
+
+    except FileNotFoundError:
+        tasks = []
+        print("No saved task file found. Starting with an empty task list.")
+        
+
+    
 #run manager loop, handles the menu input from user and calls the corresponding functionm
 def run_manager():
     """Main loop to call appropriate functions 
@@ -63,9 +90,16 @@ def run_manager():
         if usr_input == "add":
             name = input("Task name: ")
             priority = input("Priority (Low/Medium/High): ")
-            estimated_time = int(input("Estimated time (minutes): "))
-            add_task(name, priority, estimated_time)
-            print("Task added.")
+
+            try:
+                estimated_time = int(input("Estimated time (minutes): "))
+
+                add_task(name, priority, estimated_time)
+                save_tasks()
+                print("Task added.")
+
+            except ValueError:
+                print("Error: Estimated time must be a whole number.")
 
         elif usr_input == "view":
             if len(tasks) == 0:
@@ -74,15 +108,27 @@ def run_manager():
                 view_task()
 
         elif usr_input == "complete":
-            index = int(input("Enter task index: "))
-            if 0 <= index < len(tasks):
-                complete_task(index)
-            else:
-                print("Error: Invalid task index.")
+            try:
+                index = int(input("Enter task index: "))
+
+                if 0 <= index < len(tasks):
+                    complete_task(index)
+                    save_tasks()
+                else:
+                    print("Error: Invalid task index.")
+
+            except ValueError:
+                print("Error: Please enter a valid whole number.")
 
         elif usr_input == "delete":
-            index = int(input("Enter task index: "))
-            delete_task(index)
+            try:
+                index = int(input("Enter task index: "))
+
+                delete_task(index)
+                save_tasks()
+
+            except ValueError:
+                print("Error: Please enter a valid whole number.")
 
         elif usr_input == "quit":
             print("Goodbye!")
