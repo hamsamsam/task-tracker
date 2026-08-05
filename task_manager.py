@@ -52,6 +52,8 @@ def delete_task(index):
 
 #run manager loop, handles the menu input from user and calls the corresponding functionm
 def run_manager():
+    """Main loop to call appropriate functions 
+    """
     print("Welcome to the Task Manager!")
     
     while True:
