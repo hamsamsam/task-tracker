@@ -73,7 +73,7 @@ def load_tasks():
 
     except FileNotFoundError:
         tasks = []
-        print("No saved task file found. Starting with an empty task list.")
+        print("No saved file found. Starting with an empty task list.")
         
 
     
@@ -81,10 +81,11 @@ def load_tasks():
 def run_manager():
     """Main loop to call appropriate functions 
     """
+    load_tasks()
     print("Welcome to the Task Manager!")
     
     while True:
-        print("Options: add | view | complete | delete | quit")
+        print("Options: add | view | complete | delete | save | quit")
         usr_input = input("-> ").lower()
 
         if usr_input == "add":
@@ -129,9 +130,15 @@ def run_manager():
 
             except ValueError:
                 print("Error: Please enter a valid whole number.")
-
+        
+        elif usr_input == "save":
+            save_tasks()
+            print("File successfully saved!")
+        
+        
         elif usr_input == "quit":
             print("Goodbye!")
+            save_tasks()
             break
 
         else:
