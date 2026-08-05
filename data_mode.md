@@ -22,3 +22,7 @@
 - The `estimated_time` value is always entered as a whole number (integer).
 - The `priority` value is expected to be one of **Low**, **Medium**, or **High**.
 - A completed task is represented by setting the `is_complete` field to `True` rather than moving it to a separate list.
+
+## Section 4:
+
+Between the dictioary task model to the Task class model, the program started using a list of object Task instead of dictionaries to hold data. This allows us to keep variables and related functions together. Encapsulation is good because it keeps things more organised and maintainable, it allows the object Task to maintain its own state and behaviour. to_dict() and from_dict() are needed because JSON can only store data in a particular format and these methods allow us to conver objects to that format for storage.
