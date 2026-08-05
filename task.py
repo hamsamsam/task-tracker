@@ -10,7 +10,7 @@ class Task:
         """
         self.name = name
         self.estimated_time = estimated_time
-        self.__priority = priority
+        self.set_priority(priority)
         self.__is_complete = False
         
     
@@ -28,8 +28,12 @@ class Task:
         Args:
             priority (str): priority level of the task 
         """
-        self.__priority = priority
-        
+        if priority.lower == 'low' or priority.lower == 'medium' or priority.lower == 'high':
+            self.__priority = priority
+        else:
+            print("Error: Invalid priority level, please pick between low/medium/high. Priority set to low as default.")
+            self.__priority = 'low'
+            
     def get_complete(self):
         """Gets the status of the task 
 
@@ -52,6 +56,10 @@ class Task:
         return self.__dict__
     
     def to_string(self):
+        """
+        Docstring to genetrate formatted output 
+        
+        """
         return(
             f"""
             Name: {self.name}
@@ -71,11 +79,11 @@ class Task:
         """
         task = cls(
             task_dict["name"],
-            task_dict["priority"],
+            task_dict["_Task__priority"],
             task_dict["estimated_time"]
         )
 
-        if task_dict.get("is_complete", False):
+        if task_dict.get("_Task__is_complete", False):
             task.mark_complete()
 
         return task

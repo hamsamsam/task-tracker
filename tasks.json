@@ -1,8 +1,8 @@
 [
     {
         "name": "Get Groceries",
-        "priority": "low",
-        "is_complete": false,
-        "estimated_time": 25
+        "estimated_time": 25,
+        "_Task__priority": "low",
+        "_Task__is_complete": false
     }
 ]

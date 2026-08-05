@@ -1,4 +1,5 @@
 import json
+from task import Task
 
 #constant for file name, good for maintainability 
 TASKS_FILE = "tasks.json"
@@ -15,21 +16,15 @@ def add_task(name, priority, estimated_time):
         priority (str): priority level
         estimated_time (int): _description_
     """
-    new_task = {
-        "name": name,
-        "priority": priority,
-        "is_complete": False,
-        "estimated_time": estimated_time
-    }
-    
-    tasks.append(new_task)
+    task = Task(name, priority, estimated_time)
+    tasks.append(task)
     
 
 def view_task():
     """Prints out entire task lists
     """
     for i, task in enumerate(tasks):
-        print(f"{i+1}. {task["name"]} | Priority: {task["priority"]} | Status: {task["is_complete"]} | Est. Time: {task["estimated_time"]}")
+        print(f"{i+1}. {task.name} | Priority: {task.get_priority()} | Status: {task.get_complete()} | Est. Time: {task.estimated_time}")
     
 
 def complete_task(index):
@@ -38,8 +33,8 @@ def complete_task(index):
     Args:
         index (int): index of task to change
     """
-    tasks[index]["is_complete"] = True
-    print(f"Task marked complete: {tasks[index]["name"]}")
+    tasks[index].mark_complete()
+    print(f"Task marked complete: {tasks[index].name}")
     
     
 def delete_task(index):
@@ -50,24 +45,23 @@ def delete_task(index):
     """
     if 0 <= index < len(tasks):
         deleted_task = tasks.pop(index)
-        print(f"Deleted task: {deleted_task}")
+        print(f"Deleted task: {deleted_task.name}")
     else:
         print("Error: Invalid task index.")
 
 def save_tasks():
     """save the current list of tasks to a JSON file."""
     with open(TASKS_FILE, "w") as file:
-        json.dump(tasks, file, indent=4)
+        json.dump([task.to_dict() for task in tasks], file, indent=4)
 
     print("Tasks saved successfully.")
 
 def load_tasks():
     """load tasks from a JSON file."""
     global tasks
-
     try:
         with open(TASKS_FILE, "r") as file:
-            tasks = json.load(file)
+            tasks = [Task.from_dict(t) for t in json.load(file)]
 
         print(f"Loaded {len(tasks)} task(s).")
 
@@ -133,7 +127,7 @@ def run_manager():
         
         elif usr_input == "save":
             save_tasks()
-            print("File successfully saved!")
+            print("File successfully saveadd!")
         
         
         elif usr_input == "quit":
