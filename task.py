@@ -28,7 +28,7 @@ class Task:
         Args:
             priority (str): priority level of the task 
         """
-        if priority.lower == 'low' or priority.lower == 'medium' or priority.lower == 'high':
+        if priority.lower() == 'low' or priority.lower() == 'medium' or priority.lower() == 'high':
             self.__priority = priority
         else:
             print("Error: Invalid priority level, please pick between low/medium/high. Priority set to low as default.")
@@ -206,3 +206,16 @@ def task_from_dict(data):
 
     else:
         return Task.from_dict(data)
+    
+if __name__ == "__main__":
+    demo_tasks = [
+        Task("Buy groceries", "low", 30),
+        UrgentTask("Fix server outage", 5, "2024-12-01"),
+        RecurringTask("Team standup", "medium", 15, "daily")
+    ]
+
+    print("--- Polymorphism Demo ---")
+    for task in demo_tasks:
+        print(task)
+        print("Is a Task instance:", isinstance(task, Task))
+        print()

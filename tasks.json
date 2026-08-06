@@ -4,5 +4,29 @@
         "estimated_time": 25,
         "_Task__priority": "low",
         "_Task__is_complete": false
+    },
+    {
+        "name": "Fix Server Outage",
+        "estimated_time": 20,
+        "_Task__priority": "high",
+        "_Task__is_complete": false,
+        "deadline": "2024-12-01",
+        "type": "UrgentTask"
+    },
+    {
+        "name": "Team standup",
+        "estimated_time": 25,
+        "_Task__priority": "low",
+        "_Task__is_complete": false,
+        "frequency": "daily",
+        "type": "RecurringTask"
+    },
+    {
+        "name": "Team Meeting",
+        "estimated_time": 25,
+        "_Task__priority": "medium",
+        "_Task__is_complete": false,
+        "frequency": "weekly",
+        "type": "RecurringTask"
     }
 ]
