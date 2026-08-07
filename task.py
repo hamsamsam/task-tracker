@@ -69,6 +69,19 @@ class Task:
             """
         )
         
+    def __str__(self):
+        """Returns a formatted string representation of the task,
+        including name, priority, estimated time, and status.
+
+        Returns:
+            str: formatted task details
+        """
+        status = "Complete" if self.get_complete() else "Pending"
+        return (
+            f"{self.name} | Priority: {self.get_priority()} "
+            f"| Estimated Time: {self.estimated_time} min | Status: {status}"
+        )
+        
     @classmethod
     def from_dict(cls, task_dict):
         """
