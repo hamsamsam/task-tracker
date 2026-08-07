@@ -25,3 +25,5 @@ Documentation
     X README is complete with all required sections
     X Project Structure section lists every file in the repository
     X Known bugs are documented
+
+Upon reviewing the code with the above checklist, I notices an unused function called "to_string". After checking that the function is not used by task_manager I removed it from the code, reducing the number of unused code.
