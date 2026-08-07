@@ -55,19 +55,6 @@ class Task:
         """
         return self.__dict__
     
-    def to_string(self):
-        """
-        Docstring to genetrate formatted output 
-        
-        """
-        return(
-            f"""
-            Name: {self.name}
-            Estimated Time: {self.estimated_time}
-            Priority: {self.get_priority}
-            Status: {self.get_complete} 
-            """
-        )
         
     def __str__(self):
         """Returns a formatted string representation of the task,

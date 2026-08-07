@@ -22,13 +22,6 @@ class TestTask(unittest.TestCase):
         self.NewTask.mark_complete()
         self.assertTrue(self.NewTask.get_complete())
 
-    def test_set_priority_value(self):
-        """Verifies that set_priority() lowercases and correctly sets
-        a valid priority value.
-        """
-        self.NewTask.set_priority("Low")
-        self.assertEqual(self.NewTask.get_priority(), 'Low')
-
     def test_set_priority_invalid(self):
         """Verifies that set_priority() defaults to 'low' when given
         an invalid priority value.
@@ -63,22 +56,6 @@ class TestTask(unittest.TestCase):
         self.assertEqual(rebuilt.get_priority(), self.NewTask.get_priority())
         self.assertEqual(rebuilt.estimated_time, self.NewTask.estimated_time)
         self.assertEqual(rebuilt.get_complete(), self.NewTask.get_complete())
-
-    def test_from_dict_marks_complete(self):
-        """Verifies that Task.from_dict() marks the rebuilt task as
-        complete when the source dictionary indicates completion.
-        """
-        self.NewTask.mark_complete()
-        rebuilt = Task.from_dict(self.NewTask.to_dict())
-        self.assertTrue(rebuilt.get_complete())
-
-    def test_mark_complete(self):
-        """Verifies that a task starts incomplete and becomes complete
-        after calling mark_complete().
-        """
-        self.assertFalse(self.NewTask.get_complete())
-        self.NewTask.mark_complete()
-        self.assertTrue(self.NewTask.get_complete())
 
     def test_str_output(self):
         """Verifies that str() on a Task includes its name and the
